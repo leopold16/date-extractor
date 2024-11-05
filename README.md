@@ -1,12 +1,11 @@
 # Image Analysis with OpenAI GPT-4 Vision
 
-This project is a web application that allows users to upload images and receive analyzed data from the OpenAI GPT-4 Vision model. The application extracts dates and their contexts from the uploaded images and returns the information in a structured format.
+This project is a web application that allows users to input natural language and receive extracted tasks, dates, and subtasks from the OpenAI GPT-4 model. The application extracts dates and their contexts and lets user download a calendar file.
 
 ## Features
 
-- **Image Upload**: Users can upload images directly through the web interface.
-- **Date Extraction**: The application uses OpenAI's GPT-4 Vision model to analyze images and extract dates with their context.
-- **JSON Responses**: All responses from the server are in JSON format, ensuring easy integration with other systems.
+- **Date Extraction**: The application uses OpenAI's GPT-4 model to analyze natural text and extract dates with their context.
+- **.ics Download**: The user receives .ics file to download, currently working on integration with google calendar.
 
 ## Technologies Used
 

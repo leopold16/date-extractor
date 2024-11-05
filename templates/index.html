@@ -3,40 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Scheduler</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Task Manager</title>
     <style>
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            color: #495057;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #6c757d;
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 600px;
+        }
+        form {
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: auto;
+            padding: 20px;
             background-color: #f8f9fa;
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+            position: relative;
+            bottom: 0;
         }
-        .container {
-            margin-top: 50px;
-        }
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        footer p {
+            margin: 5px 0;
+            color: #6c757d;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">Task Scheduler</h5>
-                <form method="POST" action="/">
-                    <div class="form-group">
-                        <label for="task">Enter your task:</label>
-                        <input type="text" class="form-control" id="task" name="task" placeholder="e.g., Meeting tomorrow at 3 PM">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Create Event</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Include Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <h1>Task Manager</h1>
+    <p>Welcome to the Task Manager! Enter a task to generate a calendar event with subtasks. This tool helps you organize your tasks efficiently by breaking them down into manageable subtasks.</p>
+    <form method="POST">
+        <label for="task">Enter Task:</label>
+        <input type="text" id="task" name="task" required>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>

@@ -12,6 +12,8 @@ app = Flask(__name__)
 # Initialize OpenAI client
 client = OpenAI(api_key="key")
 
+tasks = []  # Global list to store tasks and subtasks
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -68,6 +70,38 @@ def index():
             
             if not date:
                 raise ValueError("Date parsing failed.")
+
+            # Store the task details
+            task = {
+                'name': task_name,
+                'date': date,
+                'subtasks': []
+            }
+
+            # Call OpenAI API to get subtasks
+            subtask_response = client.chat.completions.create(
+                model="gpt-4",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": (
+                            f"Please list up to 5 short subtasks for the task: '{task_name}'. "
+                            "Provide a concise list of relevant subtasks."
+                        )
+                    }
+                ],
+                max_tokens=150,
+            )
+            
+            subtasks = subtask_response.choices[0].message.content.strip().split('\n')
+            task['subtasks'] = [subtask.strip() for subtask in subtasks if subtask.strip()][:5]
+
+            # Debugging: Print subtasks to console
+            print(f"Subtasks for '{task_name}': {task['subtasks']}")
+
+            # Add the task to the global list
+            tasks.append(task)
+
         except (ValueError, IndexError) as e:
             print(f"Unexpected response format: {task_details}")
             return jsonify({'error': f"Failed to parse the date and task. Response received: {task_details}"})
@@ -77,6 +111,7 @@ def index():
         event = Event()
         event.name = task_name
         event.begin = date.astimezone(pytz.timezone('UTC'))  # Ensure the event time is in UTC
+        event.description = "\n".join(task['subtasks'])  # Add subtasks as description
         calendar.events.add(event)
 
         # Prepare the .ics file for download
@@ -92,7 +127,7 @@ def index():
             mimetype="text/calendar"
         )
     
-    return render_template('index.html')
+    return render_template('index.html', tasks=tasks)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,4 +1,4 @@
-# Image Analysis with OpenAI GPT-4 Vision
+# Task Analysis with OpenAI GPT-4 
 
 This project is a web application that allows users to input natural language and receive extracted tasks, dates, and subtasks from the OpenAI GPT-4 model. The application extracts dates and their contexts and lets user download a calendar file.
 

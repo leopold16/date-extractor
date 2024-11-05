@@ -36,7 +36,8 @@ def index():
                         "Return the response formatted as 'Date - Task: <date> - <task>' for easy parsing."
                         "If the date is not specified, but time is given, assume it is today's date and the time is the time given."
                         "If the date is given as a weekday, such as Monday, assume it is the next occurence of that weekday."
-                        "If the date given is tomorrow, assume it is today's date plus one day."
+                        "If the date given is tomorrow, assume it is today's date plus one day. If there is a time given, add that time on the specific date"
+                        "If the date given is today, assume it is today's date. If there is a time given, add that time on today's date"
                     )
                 }
             ],
